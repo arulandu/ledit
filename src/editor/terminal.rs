@@ -1,4 +1,3 @@
-use crossterm::execute;
 use crossterm::cursor::{MoveTo, Hide, Show};
 use crossterm::style::Print;
 use crossterm::{queue, Command};
@@ -6,13 +5,13 @@ use crossterm::terminal::{enable_raw_mode, disable_raw_mode, Clear, ClearType, s
 use std::io::{stdout, Error, Write};
 
 
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, Default)]
 pub struct Size {
     pub height: usize,
     pub width: usize,
 }
 
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, Default)]
 pub struct Position {
     pub x: usize,
     pub y: usize,

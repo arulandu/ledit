@@ -1,8 +1,9 @@
 use crossterm::event::{read, Event::Key, KeyCode::Char, KeyCode, KeyEvent, KeyEventKind, Event, KeyModifiers};
 mod terminal;
-use terminal::{Terminal, Size, Position};
+use terminal::{Terminal, Position, Size};
 mod view;
 use view::View;
+use std::env::args;
 
 #[derive(Debug, Clone, Copy, Default)]
 pub struct Location {
@@ -14,16 +15,27 @@ pub struct Location {
 pub struct Editor {
     should_quit: bool,
     location: Location,
+    view: View
 }
 
 impl Editor {
     pub fn run(&mut self) {
         Terminal::initialize().unwrap();
+        self.handle_args().unwrap();
+
         let result = self.repl();
         Terminal::terminate().unwrap();
         result.unwrap();
     }
 
+    fn handle_args(&mut self) -> Result<(), std::io::Error> {
+        let args: Vec<String> = args().collect();
+        if let Some(arg) = args.get(1) {
+            self.view.load_file(arg)?;
+        }
+
+        Ok(())
+    }
     
     fn repl(&mut self) -> Result<(), std::io::Error> {
         loop {
@@ -37,7 +49,8 @@ impl Editor {
     }
 
     fn evaluate_event(&mut self, event: &Event) -> Result<(), std::io::Error> {
-        if let Key(KeyEvent {code, modifiers, kind: KeyEventKind::Press, ..}) = event {
+        match event {
+        Key(KeyEvent {code, modifiers, kind: KeyEventKind::Press, ..}) => {
             match code {
                 Char('q') if *modifiers == KeyModifiers::CONTROL => {
                     self.should_quit = true;
@@ -69,6 +82,11 @@ impl Editor {
                 _ => ()
             }
         }
+        Event::Resize(width, height) => {
+            self.view.resize(Size{width: *width as usize, height: *height as usize});
+        }
+        _ => {}
+    }
 
         Ok(())
     }
@@ -80,7 +98,7 @@ impl Editor {
             Terminal::move_cursor_to(Position{x: 0, y: 0})?;
             Terminal::print("Goodbye\r\n")?;
         } else {
-            View::render()?; 
+            self.view.render()?;
             Terminal::move_cursor_to(Self::location_to_position(&self.location))?;
         }
 
