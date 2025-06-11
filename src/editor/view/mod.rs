@@ -76,61 +76,90 @@ impl View {
     pub fn handle_command(&mut self, cmd: EditorCommand) {
         match cmd {
             EditorCommand::MoveCursor(dir) => {
+                let line_width = |line: usize| self.buffer.lines.get(line).map_or(0, |l| l.len());
+                let Location{mut line, column: mut col} = self.location;
+                let Location{line: mut sline, column: mut scol} = self.scroll_offset;
                 match dir {
                     Direction::Up => {
-                        if self.scroll_offset.line > 0 && self.location.line == self.scroll_offset.line {
-                            self.scroll_offset.line = self.scroll_offset.line.saturating_sub(1);
+                        if sline > 0 && line == sline {
+                            sline = sline.saturating_sub(1);
                             self.needs_redraw = true;
                         }
 
-                        self.location.line = self.location.line.saturating_sub(1);
+                        line = line.saturating_sub(1);
                     }
                     Direction::Down => {
-                        if self.location.line == self.size.height + self.scroll_offset.line - 1 {
-                            self.scroll_offset.line = self.scroll_offset.line.saturating_add(1);
+                        if line == self.size.height + sline - 1 {
+                            sline = sline.saturating_add(1);
                             self.needs_redraw = true;
                         }
 
-                        self.location.line = self.location.line.saturating_add(1);
-
+                        line = line.saturating_add(1);
                     }
                     Direction::Left => {
-                        if self.scroll_offset.column > 0 && self.location.column == self.scroll_offset.column {
-                            self.scroll_offset.column = self.scroll_offset.column.saturating_sub(1);
-                            self.needs_redraw = true;
+                        if col == scol {
+                            if scol > 0 {
+                                scol = scol.saturating_sub(1);
+                                self.needs_redraw = true;
+                            } else {
+                                line = line.saturating_sub(1);
+                                col = line_width(line);
+                            }
                         }
 
-                        self.location.column = self.location.column.saturating_sub(1);
+                        col = col.saturating_sub(1);
                     }
-                    Direction::Right => {
-                        if self.location.column == self.size.width + self.scroll_offset.column - 1 {
-                            self.scroll_offset.column = self.scroll_offset.column.saturating_add(1);
+                    Direction::Right if col < line_width(line) => {
+                        if col == self.size.width + scol - 1 {
+                            scol = scol.saturating_add(1);
                             self.needs_redraw = true;
+                        } else if col == line_width(line).saturating_sub(1) {
+                            line = line.saturating_add(1);
+                            col = 0;
+                        } else {
+                            col = col.saturating_add(1);
                         }
-
-                        self.location.column = self.location.column.saturating_add(1);
                     }
                     Direction::PageUp => {
-                        self.location.line = self.scroll_offset.line;
+                        line = sline;
                     }
                     Direction::PageDown => {
-                        self.location.line = self.scroll_offset.line + self.size.height - 1;
+                        line = sline + self.size.height - 1;
                     }
                     Direction::Home => {
-                        self.location.column = self.scroll_offset.column;
+                        col = 0;
                     }
                     Direction::End => {
-                        self.location.column = self.scroll_offset.column + self.size.width - 1;
+                        col = line_width(line);
                     }
+                    _ => {}
                 }
+                
+                col = std::cmp::min(col, line_width(line).saturating_sub(1));
+
+                self.location = Location{line, column: col};
+                self.scroll_offset = Location{line: sline, column: scol};
+                self.update_scroll_offset_to_fit();
             }
             EditorCommand::Resize(size) => {
                 self.resize(size);
+                self.update_scroll_offset_to_fit();
+                self.needs_redraw = true;
             }
             _ => {}
         }
     }
 
+
+    fn update_scroll_offset_to_fit(&mut self) {
+        if self.location.column < self.scroll_offset.column {
+            self.scroll_offset.column = self.location.column;
+            self.needs_redraw = true;
+        } else if self.location.column > self.scroll_offset.column + self.size.width {
+            self.scroll_offset.column = self.location.column.saturating_sub(self.size.width)+1;
+            self.needs_redraw = true;
+        }
+    }
     pub fn get_position(&self) -> Position {
         self.location.sub(&self.scroll_offset).into()
     }
