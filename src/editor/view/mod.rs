@@ -8,7 +8,7 @@ const VERSION: &str = env!("CARGO_PKG_VERSION");
 pub struct View {
     buffer: Buffer,
     needs_redraw: bool,
-    size: Size
+    pub size: Size
 }
 
 impl Default for View {
@@ -22,14 +22,11 @@ impl Default for View {
 }
 
 impl View {
-    pub fn render(&self) -> Result<(), std::io::Error> {
-        if !self.needs_redraw {return Ok(());}
+    pub fn render(&mut self) {
+        if !self.needs_redraw { return; }
         
-
-
-        Terminal::move_cursor_to(Position{x: 0, y: 0})?;
+        let _ = Terminal::move_cursor_to(Position{col: 0, row: 0});
         for row in 0..self.size.height {
-            Terminal::clear_line()?;
             match self.buffer.lines.get(row) {
                 Some(line) => {
                     let truncated = if line.len() >= self.size.width {
@@ -38,30 +35,33 @@ impl View {
                         line
                     };
 
-                    Terminal::print(truncated)?;
+                    Self::render_line(row, truncated);
                 }
                 None => {
                     // Welcome screen
                     if row == self.size.height / 3 && self.buffer.is_empty() {
                         let mut msg = format!("Welcome to {NAME} -- Version {VERSION}");
-                        msg.truncate(   self.size.width);
+                        msg.truncate(self.size.width);
                         let msg_len = msg.len();
                         let padding = if self.size.width > msg_len + 2 { (self.size.width - msg_len)/2-1 } else { 0 };
                         let spaces = " ".repeat(padding as usize);
-                        Terminal::print(&format!("~{spaces}{msg}"))?;
+                        Self::render_line(row, &format!("~{spaces}{msg}"));
                     } else {
-                        Terminal::print("~")?;
+                        Self::render_line(row, &format!("~"));
                     }
                 }
             }
-                  
-            if row < self.size.height - 1 {
-                Terminal::print("\r\n")?;
-            }
         } 
-        Ok(())
+        
+
+        self.needs_redraw = false;
     }
 
+
+    fn render_line(row: usize, txt: &str) {
+        let result = Terminal::print_row(row, txt);
+        debug_assert!(result.is_ok(), "Failed to render line");
+    }
 
     pub fn resize(&mut self, size: Size) {
         self.size = size; 
