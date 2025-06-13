@@ -3,19 +3,15 @@ use crossterm::style::Print;
 use crossterm::{queue, Command};
 use crossterm::terminal::{disable_raw_mode, enable_raw_mode, size, Clear, ClearType, EnterAlternateScreen, LeaveAlternateScreen};
 use std::io::{stdout, Error, Write};
+pub mod position;
+use position::Position;
 
-
-#[derive(Copy, Clone, Default)]
+#[derive(Copy, Clone, Default, Debug)]
 pub struct Size {
     pub height: usize,
     pub width: usize,
 }
 
-#[derive(Copy, Clone, Default)]
-pub struct Position {
-    pub col: usize,
-    pub row: usize,
-}
 pub struct Terminal;
 
 impl Terminal {

@@ -1,6 +1,7 @@
 use crossterm::event::{Event, KeyCode, KeyEvent, KeyModifiers};
 use crate::editor::terminal::Size;
 
+#[derive(Debug)]
 pub enum Direction {
     PageUp,
     PageDown,
@@ -12,6 +13,7 @@ pub enum Direction {
     Right,
 }
 
+#[derive(Debug)]
 pub enum EditorCommand {
     MoveCursor(Direction),
     Resize(Size),

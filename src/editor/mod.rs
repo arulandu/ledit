@@ -1,9 +1,9 @@
 use std::env::args;
-use std::io::{Error, Write};
+use std::io::Error;
 use std::panic::{take_hook, set_hook};
-use crossterm::event::{read, Event::Key, KeyCode::Char, KeyCode, KeyEvent, KeyEventKind, Event, KeyModifiers};
+use crossterm::event::{read, Event};
 mod terminal;
-use terminal::{Terminal, Position, Size};
+use terminal::{Terminal};
 mod view;
 use view::{View};
 mod editorcommand;
@@ -74,7 +74,7 @@ impl Editor {
     fn refresh_screen(&mut self) {
         let _ = Terminal::hide_cursor();
         let _ = self.view.render();
-        let _ = Terminal::move_cursor_to(self.view.get_position());
+        let _ = Terminal::move_cursor_to(self.view.get_cursor_position());
         let _ = Terminal::show_cursor();
         let _ = Terminal::execute();
     }

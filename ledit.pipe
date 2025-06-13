@@ -1,0 +1,64 @@
+[2025-06-12T23:57:38Z INFO  Ledit::logger] Logger initialized - read logs with: cat ledit.pipe
+[2025-06-12T23:57:38Z INFO  Ledit] Starting Ledit editor
+[2025-06-12T23:57:40Z DEBUG Ledit::editor::view] Handling command: MoveCursor(Down)
+[2025-06-12T23:57:40Z DEBUG Ledit::editor::view] Text location:	Location { line: 1, index: 0 }	Scroll offset:	Position { col: 0, row: 0 }
+[2025-06-12T23:57:43Z DEBUG Ledit::editor::view] Handling command: MoveCursor(Down)
+[2025-06-12T23:57:43Z DEBUG Ledit::editor::view] Text location:	Location { line: 2, index: 0 }	Scroll offset:	Position { col: 0, row: 0 }
+[2025-06-12T23:57:43Z DEBUG Ledit::editor::view] Handling command: MoveCursor(Down)
+[2025-06-12T23:57:43Z DEBUG Ledit::editor::view] Text location:	Location { line: 3, index: 0 }	Scroll offset:	Position { col: 0, row: 0 }
+[2025-06-12T23:57:43Z DEBUG Ledit::editor::view] Handling command: MoveCursor(Down)
+[2025-06-12T23:57:43Z DEBUG Ledit::editor::view] Text location:	Location { line: 4, index: 0 }	Scroll offset:	Position { col: 0, row: 0 }
+[2025-06-12T23:57:43Z DEBUG Ledit::editor::view] Handling command: MoveCursor(Down)
+[2025-06-12T23:57:43Z DEBUG Ledit::editor::view] Text location:	Location { line: 5, index: 0 }	Scroll offset:	Position { col: 0, row: 0 }
+[2025-06-12T23:57:43Z DEBUG Ledit::editor::view] Handling command: MoveCursor(Down)
+[2025-06-12T23:57:43Z DEBUG Ledit::editor::view] Text location:	Location { line: 6, index: 0 }	Scroll offset:	Position { col: 0, row: 0 }
+[2025-06-12T23:57:44Z DEBUG Ledit::editor::view] Handling command: MoveCursor(Down)
+[2025-06-12T23:57:44Z DEBUG Ledit::editor::view] Text location:	Location { line: 7, index: 0 }	Scroll offset:	Position { col: 0, row: 0 }
+[2025-06-12T23:57:44Z DEBUG Ledit::editor::view] Handling command: MoveCursor(Right)
+[2025-06-12T23:57:44Z DEBUG Ledit::editor::view] Text location:	Location { line: 7, index: 1 }	Scroll offset:	Position { col: 0, row: 0 }
+[2025-06-12T23:57:44Z DEBUG Ledit::editor::view] Handling command: MoveCursor(Right)
+[2025-06-12T23:57:44Z DEBUG Ledit::editor::view] Text location:	Location { line: 7, index: 2 }	Scroll offset:	Position { col: 0, row: 0 }
+[2025-06-12T23:57:45Z DEBUG Ledit::editor::view] Handling command: MoveCursor(Right)
+[2025-06-12T23:57:45Z DEBUG Ledit::editor::view] Text location:	Location { line: 7, index: 3 }	Scroll offset:	Position { col: 0, row: 0 }
+[2025-06-12T23:57:45Z DEBUG Ledit::editor::view] Handling command: MoveCursor(Right)
+[2025-06-12T23:57:45Z DEBUG Ledit::editor::view] Text location:	Location { line: 7, index: 4 }	Scroll offset:	Position { col: 0, row: 0 }
+[2025-06-12T23:57:45Z DEBUG Ledit::editor::view] Handling command: MoveCursor(Right)
+[2025-06-12T23:57:45Z DEBUG Ledit::editor::view] Text location:	Location { line: 7, index: 5 }	Scroll offset:	Position { col: 0, row: 0 }
+[2025-06-12T23:57:45Z DEBUG Ledit::editor::view] Handling command: MoveCursor(Right)
+[2025-06-12T23:57:45Z DEBUG Ledit::editor::view] Text location:	Location { line: 7, index: 6 }	Scroll offset:	Position { col: 0, row: 0 }
+[2025-06-12T23:57:45Z DEBUG Ledit::editor::view] Handling command: MoveCursor(Right)
+[2025-06-12T23:57:45Z DEBUG Ledit::editor::view] Text location:	Location { line: 7, index: 7 }	Scroll offset:	Position { col: 0, row: 0 }
+[2025-06-12T23:57:45Z DEBUG Ledit::editor::view] Handling command: MoveCursor(Right)
+[2025-06-12T23:57:45Z DEBUG Ledit::editor::view] Text location:	Location { line: 7, index: 8 }	Scroll offset:	Position { col: 0, row: 0 }
+[2025-06-12T23:57:46Z DEBUG Ledit::editor::view] Handling command: MoveCursor(Right)
+[2025-06-12T23:57:46Z DEBUG Ledit::editor::view] Text location:	Location { line: 7, index: 9 }	Scroll offset:	Position { col: 0, row: 0 }
+[2025-06-12T23:57:46Z DEBUG Ledit::editor::view] Handling command: MoveCursor(Right)
+[2025-06-12T23:57:46Z DEBUG Ledit::editor::view] Text location:	Location { line: 7, index: 10 }	Scroll offset:	Position { col: 0, row: 0 }
+[2025-06-12T23:57:46Z DEBUG Ledit::editor::view] Handling command: MoveCursor(Right)
+[2025-06-12T23:57:46Z DEBUG Ledit::editor::view] Text location:	Location { line: 7, index: 11 }	Scroll offset:	Position { col: 0, row: 0 }
+[2025-06-12T23:57:46Z DEBUG Ledit::editor::view] Handling command: MoveCursor(Right)
+[2025-06-12T23:57:46Z DEBUG Ledit::editor::view] Text location:	Location { line: 7, index: 12 }	Scroll offset:	Position { col: 0, row: 0 }
+[2025-06-12T23:57:46Z DEBUG Ledit::editor::view] Handling command: MoveCursor(Right)
+[2025-06-12T23:57:46Z DEBUG Ledit::editor::view] Text location:	Location { line: 7, index: 13 }	Scroll offset:	Position { col: 0, row: 0 }
+[2025-06-12T23:57:46Z DEBUG Ledit::editor::view] Handling command: MoveCursor(Right)
+[2025-06-12T23:57:46Z DEBUG Ledit::editor::view] Text location:	Location { line: 7, index: 14 }	Scroll offset:	Position { col: 0, row: 0 }
+[2025-06-12T23:57:47Z DEBUG Ledit::editor::view] Handling command: MoveCursor(Right)
+[2025-06-12T23:57:47Z DEBUG Ledit::editor::view] Text location:	Location { line: 7, index: 15 }	Scroll offset:	Position { col: 0, row: 0 }
+[2025-06-12T23:57:47Z DEBUG Ledit::editor::view] Handling command: MoveCursor(Right)
+[2025-06-12T23:57:47Z DEBUG Ledit::editor::view] Text location:	Location { line: 7, index: 16 }	Scroll offset:	Position { col: 0, row: 0 }
+[2025-06-12T23:57:47Z DEBUG Ledit::editor::view] Handling command: MoveCursor(Right)
+[2025-06-12T23:57:47Z DEBUG Ledit::editor::view] Text location:	Location { line: 7, index: 17 }	Scroll offset:	Position { col: 0, row: 0 }
+[2025-06-12T23:57:48Z DEBUG Ledit::editor::view] Handling command: MoveCursor(Left)
+[2025-06-12T23:57:48Z DEBUG Ledit::editor::view] Text location:	Location { line: 7, index: 16 }	Scroll offset:	Position { col: 0, row: 0 }
+[2025-06-12T23:57:48Z DEBUG Ledit::editor::view] Handling command: MoveCursor(Left)
+[2025-06-12T23:57:48Z DEBUG Ledit::editor::view] Text location:	Location { line: 7, index: 15 }	Scroll offset:	Position { col: 0, row: 0 }
+[2025-06-12T23:57:49Z DEBUG Ledit::editor::view] Handling command: MoveCursor(Right)
+[2025-06-12T23:57:49Z DEBUG Ledit::editor::view] Text location:	Location { line: 7, index: 16 }	Scroll offset:	Position { col: 0, row: 0 }
+[2025-06-12T23:57:51Z DEBUG Ledit::editor::view] Handling command: MoveCursor(Right)
+[2025-06-12T23:57:51Z DEBUG Ledit::editor::view] Text location:	Location { line: 7, index: 17 }	Scroll offset:	Position { col: 0, row: 0 }
+[2025-06-12T23:57:53Z DEBUG Ledit::editor::view] Handling command: MoveCursor(Right)
+[2025-06-12T23:57:53Z DEBUG Ledit::editor::view] Text location:	Location { line: 7, index: 18 }	Scroll offset:	Position { col: 0, row: 0 }
+[2025-06-12T23:57:54Z DEBUG Ledit::editor::view] Handling command: MoveCursor(Right)
+[2025-06-12T23:57:54Z DEBUG Ledit::editor::view] Text location:	Location { line: 7, index: 19 }	Scroll offset:	Position { col: 0, row: 0 }
+[2025-06-12T23:57:57Z DEBUG Ledit::editor::view] Handling command: MoveCursor(Right)
+[2025-06-12T23:57:57Z DEBUG Ledit::editor::view] Text location:	Location { line: 7, index: 20 }	Scroll offset:	Position { col: 0, row: 0 }
